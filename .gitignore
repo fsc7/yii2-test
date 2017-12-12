@@ -29,4 +29,5 @@ phpunit.phar
 tests/_output/*
 tests/_support/_generated
 
-__yii2/config/db.php
+_yii2/config/db.php
+_yii2/assets
