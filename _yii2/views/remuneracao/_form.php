@@ -16,12 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'MES')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ID_SERVIDOR_PORTAL')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'CPF')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'NOME')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'REMUNERACAO_BASICA_BRUTA')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'REMUNERACAO_BASICA_BRUTA_USD')->textInput(['maxlength' => true]) ?>
@@ -89,7 +83,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'TOTAL_DE_HONORARIOS_JETONS')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

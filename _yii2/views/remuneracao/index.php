@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RemuneracaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Remuneracaos';
+$this->title = Yii::t('app', 'Remuneracaos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="remuneracao-index">
@@ -16,21 +16,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Remuneracao', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Remuneracao'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'person_id',
             'ANO',
             'MES',
-            'ID_SERVIDOR_PORTAL',
-            'CPF',
-            // 'NOME',
-            // 'REMUNERACAO_BASICA_BRUTA',
+            'REMUNERACAO_BASICA_BRUTA',
             // 'REMUNERACAO_BASICA_BRUTA_USD',
             // 'ABATE_TETO',
             // 'ABATE_TETO_USD',
@@ -67,4 +65,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+<?php Pjax::end(); ?></div>

@@ -2,35 +2,33 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ServidorSearch */
+/* @var $searchModel app\models\CadastroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Servidors';
+$this->title = Yii::t('app', 'Cadastros');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="servidor-index">
+<div class="cadastro-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Servidor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Cadastro'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'Id_SERVIDOR_PORTAL',
-            'NOME',
-            'CPF',
+            'person_id',
             'MATRICULA',
-            // 'DESCRICAO_CARGO',
-            // 'CLASSE_CARGO',
+            'DESCRICAO_CARGO',
+            'CLASSE_CARGO',
             // 'REFERENCIA_CARGO',
             // 'PADRAO_CARGO',
             // 'NIVEL_CARGO',
@@ -41,17 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'ATIVIDADE',
             // 'OPCAO_PARCIAL',
             // 'COD_UORG_LOTACAO',
-            // 'UORG_LOTACAO',
             // 'COD_ORG_LOTACAO',
-            // 'ORG_LOTACAO',
             // 'COD_ORGSUP_LOTACAO',
-            // 'ORGSUP_LOTACAO',
             // 'COD_UORG_EXERCICIO',
-            // 'UORG_EXERCICIO',
             // 'COD_ORG_EXERCICIO',
-            // 'ORG_EXERCICIO',
             // 'COD_ORGSUP_EXERCICIO',
-            // 'ORGSUP_EXERCICIO',
             // 'TIPO_VINCULO',
             // 'SITUACAO_VINCULO',
             // 'DATA_INICIO_AFASTAMENTO',
@@ -71,4 +63,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+<?php Pjax::end(); ?></div>

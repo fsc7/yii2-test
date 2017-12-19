@@ -17,17 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'person_id') ?>
+
     <?= $form->field($model, 'ANO') ?>
 
     <?= $form->field($model, 'MES') ?>
 
-    <?= $form->field($model, 'ID_SERVIDOR_PORTAL') ?>
-
-    <?= $form->field($model, 'CPF') ?>
-
-    <?php // echo $form->field($model, 'NOME') ?>
-
-    <?php // echo $form->field($model, 'REMUNERACAO_BASICA_BRUTA') ?>
+    <?= $form->field($model, 'REMUNERACAO_BASICA_BRUTA') ?>
 
     <?php // echo $form->field($model, 'REMUNERACAO_BASICA_BRUTA_USD') ?>
 
@@ -94,8 +90,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'TOTAL_DE_HONORARIOS_JETONS') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
