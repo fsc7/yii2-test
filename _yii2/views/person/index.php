@@ -7,18 +7,15 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\PersonSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'People');
+$this->title = Yii::t('app', 'Servidor');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Person'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php Pjax::begin(); ?>
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -28,7 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'cpf',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+              'template'=>'{view} {update} {delete}',
+              'buttons'=>[
+                'view' => function ($url, $model) {
+                  return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $model->slug, ['title' => Yii::t('yii', 'View'),]);
+                }
+              ],
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

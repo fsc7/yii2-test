@@ -9,9 +9,11 @@ $this->title = 'Servidores Federais';
 
     <div class="jumbotron">
       <div class="person-form">
-          <?php $form = ActiveForm::begin(); ?>
-          <?//= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-          <?//= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+          <?php $form = ActiveForm::begin([
+            'action' => '/person/results'
+          ]); ?>
+          <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+          <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
           <?php ActiveForm::end(); ?>
       </div>
     </div>

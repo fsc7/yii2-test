@@ -35,13 +35,52 @@ class PersonController extends Controller
      */
     public function actionIndex()
     {
+        return $this->redirect('/site/index');
+        /*
         $searchModel = new PersonSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        */
+    }
+
+    /**
+     * Lists all results in Person models.
+     * @return mixed
+     */
+    public function actionResults()
+    {
+        $search = false;
+        $searchModel = new PersonSearch();
+        $request = Yii::$app->request;
+
+        if ($searchModel->load($request->post())){
+          $search = true;
+        }
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+          return $this->render('results', [
+              'searchModel' => $searchModel,
+              'dataProvider' => $dataProvider,
+          ]);
+    }
+
+    /**
+     * Displays a single Status model.
+     * @param string $slug
+     * @return mixed
+     */
+    public function actionSlug($slug)
+    {
+      $model = Person::find()->where(['slug'=>$slug])->one();
+      if (!is_null($model)) {
+          return $this->render('view', [
+              'model' => $model,
+          ]);
+      } else {
+        return $this->redirect('/person/index');
+      }
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "person".
@@ -36,6 +37,19 @@ class Person extends \yii\db\ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'immutable' => true,
+                'ensureUnique'=>true,
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -62,5 +76,23 @@ class Person extends \yii\db\ActiveRecord
     public function getRemuneracaos()
     {
         return $this->hasMany(Remuneracao::className(), ['person_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLastPayment()
+    {
+        $remuneracao = $this->hasMany(Remuneracao::className(), ['person_id' => 'id'])
+                    ->orderBy(['ANO' => SORT_DESC, 'MES' => SORT_DESC])->one();
+        return $remuneracao['REMUNERACAO_BASICA_BRUTA'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedName()
+    {
+        return ucwords(strtolower($this->name));
     }
 }

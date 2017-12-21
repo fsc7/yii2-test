@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\PersonSearch;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -60,8 +62,43 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new PersonSearch();
+
+        return $this->render('index', [
+            'model' => $searchModel,
+        ]);
     }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    // public function actionSearch($params)
+    // {
+    //   die('hello');
+    //     $query = PersonSearch::find()->where(['like', 'name', 'Felipe']);
+    //
+    //     $provider = new ActiveDataProvider([
+    //         'query' => $query,
+    //         'pagination' => [
+    //             'pageSize' => 10,
+    //         ],
+    //         'sort' => [
+    //             'defaultOrder' => [
+    //                 'created_at' => SORT_DESC,
+    //                 'title' => SORT_ASC,
+    //             ]
+    //         ],
+    //     ]);
+    //     $searchModel = new PersonSearch();
+    //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    //
+    //     return $this->render('index', [
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+    // }
 
     /**
      * Login action.
