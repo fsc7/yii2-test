@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     echo ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_search_details',
+        // 'summary' => 'Summary'
     ]);
     ?>
 <?php Pjax::end(); ?>

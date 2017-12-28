@@ -10,7 +10,8 @@ $this->title = 'Servidores Federais';
     <div class="jumbotron">
       <div class="person-form">
           <?php $form = ActiveForm::begin([
-            'action' => '/person/results'
+            'action' => '/person/results',
+            'method' => 'get'
           ]); ?>
           <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
           <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>

@@ -12,13 +12,15 @@ use yii\widgets\DetailView;
 ?>
 <div class="person-view">
 
-    <?= DetailView::widget([
+    <?php
+    echo Html::a($model->formattedName, $model->slug).' - '.$model->relatedOrganization.' - '.$model->relatedUorg;
+    /*= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'formattedName',
             'cpf',
             'lastPayment'
         ],
-    ]) ?>
+    ]) */ ?>
 
 </div>

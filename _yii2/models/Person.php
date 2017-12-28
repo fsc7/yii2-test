@@ -95,4 +95,30 @@ class Person extends \yii\db\ActiveRecord
     {
         return ucwords(strtolower($this->name));
     }
+
+    public function getRelatedOrganization()
+    {
+        $organizations = array();
+        $cadastros = $this->hasMany(Cadastro::className(), ['person_id' => 'id'])->all();
+        foreach($cadastros as $cad){
+          if (!in_array($cad->cODORGEXERCICIO->name, $organizations)){
+            $organizations[] = $cad->cODORGEXERCICIO->name;
+          }
+        }
+        return implode(', ', $organizations);
+    }
+
+    public function getRelatedUOrg()
+    {
+        $uorg = array();
+        $cadastros = $this->hasMany(Cadastro::className(), ['person_id' => 'id'])->all();
+        foreach($cadastros as $cad){
+          if (!is_null($cad->COD_UORG_EXERCICIO)){
+            if (!in_array($cad->cODUORGEXERCICIO->name, $uorg)){
+              $uorg[] = $cad->cODUORGEXERCICIO->name;
+            }
+          }
+        }
+        return implode(', ', $uorg);
+    }
 }

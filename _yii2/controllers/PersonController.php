@@ -55,9 +55,10 @@ class PersonController extends Controller
         $search = false;
         $searchModel = new PersonSearch();
         $request = Yii::$app->request;
-
-        if ($searchModel->load($request->post())){
-          $search = true;
+        if (!$request->get('page')){
+          if ($searchModel->load($request->post())){
+            $search = true;
+          }
         }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
           return $this->render('results', [
