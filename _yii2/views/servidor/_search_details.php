@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Person */
+/* @var $model app\models\Servidor */
 
 // $this->title = $model->name;
 // $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'People'), 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="person-view">
+<div class="servidor-view">
 
     <?php
     echo Html::a($model->formattedName, $model->slug).' - '.$model->relatedOrganization.' - '.$model->relatedUorg;

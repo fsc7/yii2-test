@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "organization".
@@ -27,6 +28,16 @@ class Organization extends \yii\db\ActiveRecord
         return 'organization';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'message',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */

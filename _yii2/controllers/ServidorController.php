@@ -35,13 +35,53 @@ class ServidorController extends Controller
      */
     public function actionIndex()
     {
+        return $this->redirect('/site/index');
+        /*
         $searchModel = new ServidorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        */
+    }
+
+    /**
+     * Lists all results in Servidor models.
+     * @return mixed
+     */
+    public function actionResults()
+    {
+        $search = false;
+        $searchModel = new ServidorSearch();
+        $request = Yii::$app->request;
+        if (!$request->get('page')){
+          if ($searchModel->load($request->post())){
+            $search = true;
+          }
+        }
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+          return $this->render('results', [
+              'searchModel' => $searchModel,
+              'dataProvider' => $dataProvider,
+          ]);
+    }
+
+    /**
+     * Displays a single Status model.
+     * @param string $slug
+     * @return mixed
+     */
+    public function actionSlug($slug)
+    {
+      $model = Servidor::find()->where(['slug'=>$slug])->one();
+      if (!is_null($model)) {
+          return $this->render('view', [
+              'model' => $model,
+          ]);
+      } else {
+        return $this->redirect('/servidor/index');
+      }
     }
 
     /**

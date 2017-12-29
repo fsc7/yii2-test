@@ -8,9 +8,9 @@ $this->title = 'Servidores Federais';
 <div class="site-index">
 
     <div class="jumbotron">
-      <div class="person-form">
+      <div class="servidor-form">
           <?php $form = ActiveForm::begin([
-            'action' => '/person/results',
+            'action' => '/servidor/results',
             'method' => 'get'
           ]); ?>
           <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>

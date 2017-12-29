@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "cadastro".
  *
  * @property integer $id
- * @property integer $person_id
+ * @property integer $Servidor_id
  * @property string $MATRICULA
  * @property string $DESCRICAO_CARGO
  * @property string $CLASSE_CARGO
@@ -47,7 +47,7 @@ use Yii;
  * @property Organization $cODORGLOTACAO
  * @property Organization $cODORGSUPEXERCICIO
  * @property Organization $cODORGSUPLOTACAO
- * @property Person $person
+ * @property Servidor $servidor
  * @property Uorg $cODUORGEXERCICIO
  * @property Uorg $cODUORGLOTACAO
  */
@@ -67,8 +67,8 @@ class Cadastro extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['person_id'], 'required'],
-            [['person_id'], 'integer'],
+            [['servidor_id'], 'required'],
+            [['servidor_id'], 'integer'],
             [['MATRICULA', 'DESCRICAO_CARGO', 'CLASSE_CARGO', 'REFERENCIA_CARGO', 'PADRAO_CARGO', 'NIVEL_CARGO', 'SIGLA_FUNCAO', 'NIVEL_FUNCAO', 'FUNCAO', 'CODIGO_ATIVIDADE', 'ATIVIDADE', 'OPCAO_PARCIAL', 'COD_ORG_LOTACAO', 'TIPO_VINCULO', 'SITUACAO_VINCULO', 'DATA_INICIO_AFASTAMENTO', 'DATA_TERMINO_AFASTAMENTO', 'REGIME_JURIDICO', 'JORNADA_DE_TRABALHO', 'DATA_INGRESSO_CARGOFUNCAO', 'DATA_NOMEACAO_CARGOFUNCAO', 'DATA_INGRESSO_ORGAO', 'DOCUMENTO_INGRESSO_SERVICOPUBLICO', 'DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO', 'DIPLOMA_INGRESSO_CARGOFUNCAO', 'DIPLOMA_INGRESSO_ORGAO', 'DIPLOMA_INGRESSO_SERVICOPUBLICO', 'UF_EXERCICIO'], 'string', 'max' => 191],
             [['COD_UORG_LOTACAO', 'COD_UORG_EXERCICIO'], 'string', 'max' => 15],
             [['COD_ORGSUP_LOTACAO', 'COD_ORG_EXERCICIO', 'COD_ORGSUP_EXERCICIO'], 'string', 'max' => 5],
@@ -76,7 +76,7 @@ class Cadastro extends \yii\db\ActiveRecord
             [['COD_ORG_LOTACAO'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['COD_ORG_LOTACAO' => 'id']],
             [['COD_ORGSUP_EXERCICIO'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['COD_ORGSUP_EXERCICIO' => 'id']],
             [['COD_ORGSUP_LOTACAO'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['COD_ORGSUP_LOTACAO' => 'id']],
-            [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],
+            [['servidor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Servidor::className(), 'targetAttribute' => ['servidor_id' => 'id']],
             [['COD_UORG_EXERCICIO'], 'exist', 'skipOnError' => true, 'targetClass' => Uorg::className(), 'targetAttribute' => ['COD_UORG_EXERCICIO' => 'id']],
             [['COD_UORG_LOTACAO'], 'exist', 'skipOnError' => true, 'targetClass' => Uorg::className(), 'targetAttribute' => ['COD_UORG_LOTACAO' => 'id']],
         ];
@@ -89,7 +89,7 @@ class Cadastro extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'person_id' => Yii::t('app', 'Person ID'),
+            'servidor_id' => Yii::t('app', 'Servidor ID'),
             'MATRICULA' => Yii::t('app', 'Matricula'),
             'DESCRICAO_CARGO' => Yii::t('app', 'Descricao  Cargo'),
             'CLASSE_CARGO' => Yii::t('app', 'Classe  Cargo'),
@@ -161,9 +161,9 @@ class Cadastro extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPerson()
+    public function getServidor()
     {
-        return $this->hasOne(Person::className(), ['id' => 'person_id']);
+        return $this->hasOne(Servidor::className(), ['id' => 'servidor_id']);
     }
 
     /**

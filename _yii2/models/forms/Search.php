@@ -1,7 +1,7 @@
 <?php
 namespace app\models\forms;
 
-use app\models\Person;
+use app\models\Servidor;
 use Yii;
 use yii\base\Model;
 use yii\db\Exception;

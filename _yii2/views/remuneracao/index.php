@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'person_id',
+            'servidor_id',
             'ANO',
             'MES',
             'REMUNERACAO_BASICA_BRUTA',
