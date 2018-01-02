@@ -62,7 +62,8 @@ class ServidorSearch extends Servidor
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'cpf', $this->cpf]);
+              ->andFilterWhere(['like', 'cpf', $this->cpf]);
+            // andWhere("MATCH(name) AGAINST ('$this->name' IN BOOLEAN MODE)")  // IN BOOLEAN MODE
 
         return $dataProvider;
     }

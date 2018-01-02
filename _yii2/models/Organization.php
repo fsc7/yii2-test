@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "organization".
@@ -65,7 +66,15 @@ class Organization extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCadastros()
+    public function getUrl()
+    {
+        return Html::a($this->name, "/orgao/".$this->slug);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCadastrosOrgExercicio()
     {
         return $this->hasMany(Cadastro::className(), ['COD_ORG_EXERCICIO' => 'id']);
     }
@@ -73,7 +82,7 @@ class Organization extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCadastros0()
+    public function getCadastrosOrgLotacao()
     {
         return $this->hasMany(Cadastro::className(), ['COD_ORG_LOTACAO' => 'id']);
     }
@@ -81,7 +90,7 @@ class Organization extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCadastros1()
+    public function getCadastrosOrgSupExercicio()
     {
         return $this->hasMany(Cadastro::className(), ['COD_ORGSUP_EXERCICIO' => 'id']);
     }
@@ -89,7 +98,7 @@ class Organization extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCadastros2()
+    public function getCadastrosOrgSupLotacao()
     {
         return $this->hasMany(Cadastro::className(), ['COD_ORGSUP_LOTACAO' => 'id']);
     }

@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "servidor".
@@ -106,6 +107,18 @@ class Servidor extends \yii\db\ActiveRecord
           }
         }
         return implode(', ', $organizations);
+    }
+
+    public function getRelatedOrganizationUrl()
+    {
+        $organizations_url = array();
+        $cadastros = $this->hasMany(Cadastro::className(), ['servidor_id' => 'id'])->all();
+        foreach($cadastros as $cad){
+          if (!in_array($cad->cODORGEXERCICIO->url, $organizations_url)){
+            $organizations_url[] = $cad->cODORGEXERCICIO->url;
+          }
+        }
+        return implode(', ', $organizations_url);
     }
 
     public function getRelatedUOrg()

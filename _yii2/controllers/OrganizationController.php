@@ -46,6 +46,23 @@ class OrganizationController extends Controller
 
     /**
      * Displays a single Organization model.
+     * @param string $slug
+     * @return mixed
+     */
+    public function actionSlug($slug)
+    {
+      $model = Organization::find()->where(['slug'=>$slug])->one();
+      if (!is_null($model)) {
+          return $this->render('view', [
+              'model' => $model,
+          ]);
+      } else {
+        return $this->redirect('/organization/index');
+      }
+    }
+
+    /**
+     * Displays a single Organization model.
      * @param string $id
      * @return mixed
      */

@@ -13,7 +13,7 @@ use yii\widgets\DetailView;
 <div class="servidor-view">
 
     <?php
-    echo Html::a($model->formattedName, $model->slug).' - '.$model->relatedOrganization.' - '.$model->relatedUorg;
+    echo Html::a($model->formattedName, $model->slug).' - '.$model->relatedOrganizationUrl.' - '.$model->relatedUorg;
     /*= DetailView::widget([
         'model' => $model,
         'attributes' => [
