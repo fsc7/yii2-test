@@ -18,7 +18,7 @@ class OrganizationSearch extends Organization
     public function rules()
     {
         return [
-            [['id', 'name', 'parent_id'], 'safe'],
+            [['id', 'name', 'parent_id', 'sigla', 'slug'], 'safe'],
         ];
     }
 
@@ -46,6 +46,9 @@ class OrganizationSearch extends Organization
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 150,
+            ],
         ]);
 
         $this->load($params);
@@ -59,7 +62,9 @@ class OrganizationSearch extends Organization
         // grid filtering conditions
         $query->andFilterWhere(['like', 'id', $this->id])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'parent_id', $this->parent_id]);
+            ->andFilterWhere(['like', 'parent_id', $this->parent_id])
+            ->andFilterWhere(['like', 'sigla', $this->sigla])
+            ->andFilterWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;
     }

@@ -34,7 +34,7 @@ class Organization extends \yii\db\ActiveRecord
         return [
             [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'message',
+                'attribute' => 'name',
                 // 'slugAttribute' => 'slug',
             ],
         ];
@@ -45,9 +45,12 @@ class Organization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'parent_id'], 'required'],
-            [['id', 'parent_id'], 'string', 'max' => 5],
-            [['name'], 'string', 'max' => 191],
+          [['id', 'name', 'parent_id', 'slug'], 'required'],
+          [['id', 'parent_id'], 'string', 'max' => 5],
+          [['name'], 'string', 'max' => 191],
+          [['sigla'], 'string', 'max' => 10],
+          [['slug'], 'string', 'max' => 255],
+          [['slug'], 'unique'],
         ];
     }
 
@@ -60,6 +63,8 @@ class Organization extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'parent_id' => Yii::t('app', 'Parent ID'),
+            'sigla' => Yii::t('app', 'Sigla'),
+            'slug' => Yii::t('app', 'Slug'),
         ];
     }
 
@@ -69,6 +74,14 @@ class Organization extends \yii\db\ActiveRecord
     public function getUrl()
     {
         return Html::a($this->name, "/orgao/".$this->slug);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormattedName()
+    {
+        return ucwords(strtolower($this->name));
     }
 
     /**
@@ -109,5 +122,26 @@ class Organization extends \yii\db\ActiveRecord
     public function getUorgs()
     {
         return $this->hasMany(Uorg::className(), ['organization_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParentOrg()
+    {
+        if ($this->parent_id){
+            return $org_sup = $this->hasOne(Organization::className(), ['id' => 'parent_id']);
+        } else {
+            return null;
+        }
+    }
+
+    public function getParentName()
+    {
+        if ($this->getParentOrg()){
+            return $this->parentOrg->name;
+        } else {
+          return null;
+        }
     }
 }
