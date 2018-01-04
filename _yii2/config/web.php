@@ -58,6 +58,8 @@ $config = [
                'orgao/update/<id:\d+>' => 'organization/update',
                'orgao/delete/<id:\d+>' => 'organization/delete',
                'orgao/<slug>' => 'organization/slug',
+               'contato' => 'site/contact',
+               'sobre' => 'site/about',
                '<alias:\w+>' => 'site/<alias>',
                'defaultRoute' => '/site/index',
             ],

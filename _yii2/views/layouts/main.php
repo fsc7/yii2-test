@@ -48,8 +48,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Sobre', 'url' => ['/site/about']],
-            ['label' => 'Contato', 'url' => ['/site/contact']],
+            ['label' => 'Órgãos', 'url' => ['/orgao/index']],
+            ['label' => 'Servidores', 'url' => ['/servidor/index']],
+            ['label' => 'Sobre', 'url' => ['/site/sobre']],
+            ['label' => 'Contato', 'url' => ['/site/contato']],
             // Yii::$app->user->isGuest ? (
             //     ['label' => 'Login', 'url' => ['/site/login']]
             // ) : (
